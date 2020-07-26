@@ -21,6 +21,8 @@ clf.fit(X, y, verbose=True)
 print(clf.params_)
 
 X_test = np.arange(0,7).reshape((7,1))
+y_hat_probs = clf.predict_probabilities(X_test)
 y_hat = clf.predict(X_test)
 
+print(y_hat_probs)
 print(y_hat)

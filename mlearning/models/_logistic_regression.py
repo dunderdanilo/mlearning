@@ -45,10 +45,14 @@ class LogisticRegression:
 
 
     def predict(self, X):
+        probs = self.predict_probabilities(X)
+        return [ 1 if prob >= 0.5 else 0 for prob in probs]
+
+    def predict_probabilities(self, X):
         X = np.concatenate(
             (
                 np.ones((X.shape[0], 1)),
                 X
             ), axis=1
         )
-        return sigmoid(X @ self.params_)
+        return sigmoid(X @ self.params_).reshape((X.shape[0],))
